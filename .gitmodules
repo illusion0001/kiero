@@ -1,6 +1,6 @@
 [submodule "minhook"]
 	path = minhook
-	url = https://github.com/TsudaKageyu/minhook
+	url = https://github.com/illusion0001/minhook
 [submodule "examples/imgui/imgui"]
 	path = examples/imgui/imgui
 	url = https://github.com/ocornut/imgui
