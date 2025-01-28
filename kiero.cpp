@@ -86,7 +86,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* Direct3DCreate9;
-				if ((Direct3DCreate9 = ::GetProcAddress(libD3D9, "Direct3DCreate9")) == NULL)
+				if ((Direct3DCreate9 = (void*)::GetProcAddress(libD3D9, "Direct3DCreate9")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -160,7 +160,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* CreateDXGIFactory;
-				if ((CreateDXGIFactory = ::GetProcAddress(libDXGI, "CreateDXGIFactory")) == NULL)
+				if ((CreateDXGIFactory = (void*)::GetProcAddress(libDXGI, "CreateDXGIFactory")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -184,7 +184,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* D3D10CreateDeviceAndSwapChain;
-				if ((D3D10CreateDeviceAndSwapChain = ::GetProcAddress(libD3D10, "D3D10CreateDeviceAndSwapChain")) == NULL)
+				if ((D3D10CreateDeviceAndSwapChain = (void*)::GetProcAddress(libD3D10, "D3D10CreateDeviceAndSwapChain")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -269,7 +269,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* D3D11CreateDeviceAndSwapChain;
-				if ((D3D11CreateDeviceAndSwapChain = ::GetProcAddress(libD3D11, "D3D11CreateDeviceAndSwapChain")) == NULL)
+				if ((D3D11CreateDeviceAndSwapChain = (void*)::GetProcAddress(libD3D11, "D3D11CreateDeviceAndSwapChain")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -367,7 +367,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* CreateDXGIFactory;
-				if ((CreateDXGIFactory = ::GetProcAddress(libDXGI, "CreateDXGIFactory")) == NULL)
+				if ((CreateDXGIFactory = (void*)::GetProcAddress(libDXGI, "CreateDXGIFactory")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
@@ -391,7 +391,7 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 				}
 
 				void* D3D12CreateDevice;
-				if ((D3D12CreateDevice = ::GetProcAddress(libD3D12, "D3D12CreateDevice")) == NULL)
+				if ((D3D12CreateDevice = (void*)::GetProcAddress(libD3D12, "D3D12CreateDevice")) == NULL)
 				{
 					::DestroyWindow(window);
 					::UnregisterClass(windowClass.lpszClassName, windowClass.hInstance);
