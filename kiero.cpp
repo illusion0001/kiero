@@ -43,7 +43,8 @@
 #define KIERO_ARRAY_SIZE(arr) ((size_t)(sizeof(arr)/sizeof(arr[0])))
 
 kiero::RenderType::Enum g_renderType = kiero::RenderType::None;
-uint150_t* g_methodsTable = NULL;
+//uint150_t* g_methodsTable = NULL;
+uint64_t g_PointerTable[64] = {};
 
 kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 {
@@ -470,12 +471,16 @@ kiero::Status::Enum kiero::init(RenderType::Enum _renderType)
 					return Status::UnknownError;
 				}
 
+				/*
 				g_methodsTable = (uint150_t*)::calloc(150, sizeof(uint150_t));
 				::memcpy(g_methodsTable, *(uint150_t**)device, 44 * sizeof(uint150_t));
 				::memcpy(g_methodsTable + 44, *(uint150_t**)commandQueue, 19 * sizeof(uint150_t));
 				::memcpy(g_methodsTable + 44 + 19, *(uint150_t**)commandAllocator, 9 * sizeof(uint150_t));
 				::memcpy(g_methodsTable + 44 + 19 + 9, *(uint150_t**)commandList, 60 * sizeof(uint150_t));
 				::memcpy(g_methodsTable + 44 + 19 + 9 + 60, *(uint150_t**)swapChain, 18 * sizeof(uint150_t));
+				*/
+				g_PointerTable[0] = *(uint64_t*)swapChain;
+				g_PointerTable[1] = *(uint64_t*)commandQueue;
 
 #if KIERO_USE_MINHOOK
 				MH_Initialize();
@@ -668,10 +673,10 @@ void kiero::shutdown()
 	{
 #if KIERO_USE_MINHOOK
 		MH_DisableHook(MH_ALL_HOOKS);
-#endif
 
 		::free(g_methodsTable);
 		g_methodsTable = NULL;
+#endif
 		g_renderType = RenderType::None;
 	}
 }
@@ -715,5 +720,8 @@ kiero::RenderType::Enum kiero::getRenderType()
 
 uint150_t* kiero::getMethodsTable()
 {
+#if KIERO_USE_MINHOOK
 	return g_methodsTable;
+#endif
+	return 0;
 } 
